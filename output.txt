@@ -1,0 +1,21 @@
+satya@Satyam_k MINGW64 ~/broken_auth_assignment (main)
+$ curl -X POST http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"satya@example.com","password":"password123"}'
+{"message":"OTP sent","loginSessionId":"hmchtj"}
+satya@Satyam_k MINGW64 ~/broken_auth_assignment (main)
+$ curl -X POST http://localhost:3000/auth/verify-otp \
+  -H "Content-Type: application/json" \
+  -c cookies.txt \
+  -d '{"loginSessionId":"hmchtj","otp":"212293"}'
+{"message":"OTP verified","sessionId":"hmchtj"}
+satya@Satyam_k MINGW64 ~/broken_auth_assignment (main)
+$ curl -X POST http://localhost:3000/auth/token \
+  -b cookies.txt
+{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhdHlhQGV4YW1wbGUuY29tIiwic2Vzc2lvbklkIjoiaG1jaHRqIiwiaWF0IjoxNzcxMDAwMDE2LCJleHAiOjE3NzEwMDA5MTZ9.1h4lHGlkZsS-B6wScGCAj44wR3tUs7Btu8TqWLJbT5g","expires_in":900}
+satya@Satyam_k MINGW64 ~/broken_auth_assignment (main)
+$ curl http://localhost:3000/protected -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhdHlhQGV4YW1wbGUuY29tIiwic2Vzc2lvbklkIjoiaG1jaHRqIiwiaWF0IjoxNzcxMDAwMDE2LCJleHAiOjE3NzEwMDA5MTZ9.1h4lHGlkZsS-B6wScGCAj44wR3tUs7Btu8TqWLJbT5g"
+{"message":"Access granted","user":{"email":"satya@example.com","sessionId":"hmchtj","iat":1771000016,"exp":1771000916},"success_flag":"FLAG-c2F0eWFAZXhhbXBsZS5jb21fQ09NUExFVEVEX0FTU0lHTk1FTlQ="}
+satya@Satyam_k MINGW64 ~/broken_auth_assignment (main)
+
+-

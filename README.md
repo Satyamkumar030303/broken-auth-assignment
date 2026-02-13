@@ -10,7 +10,7 @@ This API is intentionally broken. Your task is to debug it and complete the auth
    ```
 
 2. Start the server:
-   ```bash
+   ```bash  
    npm start
    ```
    Server runs at: `http://localhost:3000`
